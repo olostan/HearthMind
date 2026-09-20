@@ -1,0 +1,56 @@
+# Local configuration / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Private household data
+data/
+evidence/
+private/
+golden-private/
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.flac
+
+# Models / large artifacts
+models/
+*.gguf
+*.safetensors
+*.onnx
+*.pt
+*.pth
+
+# Go
+bin/
+coverage.out
+*.test
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / web
+node_modules/
+dist/
+.next/
+coverage/
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Runtime
+tmp/
+cache/
+logs/
