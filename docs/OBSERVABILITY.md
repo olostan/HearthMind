@@ -44,7 +44,11 @@ Observability should answer:
 
 ### Semantic quality
 - user corrections;
+- correction count by type (new label, wrong label, category, visitor lifecycle);
 - identity corrections;
+- pet identity false-accept/false-reject trend;
+- unknown-identity fallback rate by class (person/pet/visitor);
+- recurring-visitor creation/promotion/demotion rate;
 - unsupported-claim evaluation rate;
 - episode merge corrections;
 - insight dismissals.

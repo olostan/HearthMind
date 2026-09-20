@@ -18,6 +18,12 @@ A temporally continuous detected object/person within evidence. A Track is not a
 ## IdentityHypothesis
 A probabilistic association between a track and a known or anonymous entity.
 
+## PetProfile
+Enrollment record for a known household pet, including identity descriptors and reference appearance data.
+
+## VisitorProfile
+Optional record for a non-household person seen repeatedly, typically anonymous unless explicitly promoted.
+
 ## Entity
 A persistent conceptual thing in the world model: person, object, vehicle, pet, food, location, supply, etc.
 
@@ -41,6 +47,18 @@ A family-oriented explanation, observation, or recommendation derived from belie
 
 ## Correction
 A user-authored semantic correction that creates a new revision/authority signal without altering evidence.
+
+## New label correction
+Correction that links an unknown track/entity to a new enrolled or newly created identity.
+
+## Wrong label correction
+Correction that reassigns a previously attributed identity to the correct identity or to unknown.
+
+## Category correction
+Correction that marks the underlying classification (for example person/pet/object) as incorrect.
+
+## Recurring visitor
+A stable but typically anonymous visitor identity retained by policy for repeated sightings.
 
 ## Processor
 A versioned transformation from one HearthMind contract to another.

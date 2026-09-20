@@ -122,6 +122,8 @@ Must specify:
 - typed beliefs vs generic propositions;
 - projection/versioning semantics;
 - staleness/expiry behavior;
+- pet enrollment/re-identification semantics (including unknown-pet fallback and multi-pet disambiguation);
+- visitor identity lifecycle semantics (anonymous vs recurring vs enrolled);
 - evidence/derived/biometric deletion semantics and recomputation behavior;
 - contradiction handling and correction propagation.
 
@@ -206,6 +208,7 @@ Deliver:
 
 Must specify:
 - admission criteria for stable training examples;
+- correction-type-specific learning rules and deduplication/quality scoring;
 - privacy review for training/export workflows;
 - rollback/promotion criteria for adapters;
 - per-household isolation boundaries;

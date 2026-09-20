@@ -19,12 +19,17 @@ The system shall support processors capable of extracting:
 - people;
 - person tracks;
 - faces and identity hypotheses;
+- pet tracks and pet identity hypotheses;
 - objects;
 - person-object relationships;
 - pose/activity cues;
 - OCR/text;
 - vehicle/pet/food/package cues;
 - audio transcription and non-speech audio events where enabled.
+
+Pet identification shall support whole-body/appearance re-identification signals (for example coat pattern/shape, collar/tag cues, gait, continuity) rather than requiring face embeddings.
+
+Where identity confidence is insufficient, the system shall preserve unknown as a first-class output.
 
 ### FR-3 Adaptive temporal analysis
 The system shall:
@@ -53,6 +58,7 @@ The system shall maintain uncertain state for:
 - objects;
 - food/supplies;
 - vehicles/pets;
+- visitor presence class (household member vs anonymous visitor vs recurring visitor);
 - activities;
 - relationships;
 - other future household entities.
@@ -92,6 +98,14 @@ Users shall be able to correct:
 
 Corrections shall be preserved as events and may trigger reprojection/re-evaluation.
 
+Correction lifecycle shall include:
+- new label assignment (including creation of new enrolled person/pet/visitor identities);
+- wrongly applied label reassignment (known identity, recurring visitor, or unknown);
+- category correction when detected subject class is wrong (including not-a-person/not-a-pet artifacts);
+- visitor promotion/demotion (anonymous visitor, recurring visitor, enrolled identity).
+
+Corrections shall create new semantic revisions, preserve superseded lineage, and support replay/reprojection of dependent beliefs, episodes, and pattern inputs.
+
 ### FR-12 Model/provider abstraction
 The system shall allow local and optional cloud models behind common interfaces.
 
@@ -101,6 +115,12 @@ The system shall support a memory hierarchy:
 - retrieval;
 - structured long-term patterns/preferences;
 - future LoRA/fine-tuning of stable priors.
+
+Correction-derived learning shall:
+- treat correction type as explicit training-signal metadata;
+- deduplicate near-duplicate corrections and conflicting labels before dataset admission;
+- score correction quality using confidence, recency, agreement, and ambiguity indicators;
+- exclude one-off ambiguous corrections or policy-restricted biometric data from automatic promotion.
 
 ### FR-14 Family-facing application
 The eventual application shall expose:

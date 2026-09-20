@@ -41,7 +41,8 @@ Suggested classification:
 - INTERNAL: operational metrics;
 - HOUSEHOLD: timelines, generic events;
 - SENSITIVE: raw media, presence, routines;
-- BIOMETRIC: face embeddings/identity enrollment;
+- BIOMETRIC: human face embeddings/identity enrollment;
+- IDENTITY_PRIVATE: pet appearance profiles/embeddings, recurring visitor appearance profiles;
 - SECRET: tokens/passwords/keys.
 
 Policies can depend on class.
@@ -89,16 +90,25 @@ Policy should support defaults at multiple layers:
 
 Known family-member enrollment is explicit.
 
+Known pet enrollment is explicit and should store only the minimum appearance context needed for household re-identification.
+
 Unknown visitors:
 - may remain transient;
 - may receive anonymous ids;
 - biometric retention depends on policy.
+
+Recurring visitors:
+- should default to anonymous profile ids if retained;
+- should have short retention by default unless household policy opts in to longer retention;
+- may be promoted to named enrollment only by explicit user action.
 
 Never require persistent face storage for all visitors.
 
 Strong defaults:
 - family-member enrollment is opt-in;
 - visitor biometrics are disabled or short-lived by default;
+- recurring visitor appearance retention is short-lived by default;
+- pet appearance profiles remain household-private and are never exported in raw form by default;
 - identity matching failure falls back to unknown/anonymous rather than forced attribution;
 - exported logs/debug bundles never contain raw embeddings.
 
@@ -184,6 +194,8 @@ Derived state may outlive media only when policy allows and provenance semantics
 Retention defaults should be conservative:
 - evidence retention must be explicit, not silently infinite;
 - biometric retention should be shorter and more restricted than generic observations unless opted in;
+- recurring visitor identity-private appearance data should expire faster than enrolled household identity data unless explicitly extended;
+- pet identity-private appearance data may outlive visitor appearance data but should remain shorter-lived than source evidence by default unless opted in;
 - temporary exports, crops, and debug bundles should expire automatically;
 - caches must be safe to delete and regenerate.
 
@@ -227,6 +239,7 @@ Deletion and recovery procedures must preserve the distinction between evidence 
 - local models preferred;
 - explicit identity enrollment;
 - conservative visitor retention;
+- no automatic recurring-visitor-to-enrolled promotion;
 - evidence deletion disabled until semantics are implemented safely.
 
 Additionally:
