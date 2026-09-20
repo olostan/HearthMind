@@ -31,6 +31,7 @@ home LAN / private overlay network
 No public Internet exposure is required.
 
 The home core is the most trusted environment because it holds authoritative state, evidence, and policy.
+Trust boundaries are ultimately **per device/process boundary, not merely per LAN segment**.
 Every other execution location is less trusted unless explicitly hardened and allowed.
 
 ## 3. Data classes
