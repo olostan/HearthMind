@@ -57,6 +57,9 @@ Correction that reassigns a previously attributed identity to the correct identi
 ## Category correction
 Correction that marks the underlying classification (for example person/pet/object) as incorrect.
 
+## Visitor lifecycle correction
+Correction that promotes or demotes a visitor between anonymous, recurring, and enrolled identity states.
+
 ## Recurring visitor
 A stable but typically anonymous visitor identity retained by policy for repeated sightings.
 

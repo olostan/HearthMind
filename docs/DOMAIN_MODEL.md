@@ -102,7 +102,7 @@ Association between a Track and a known/anonymous Entity with confidence and con
 IdentityHypothesis applies to:
 - family members;
 - enrolled pets;
-- anonymous or recurring visitors;
+- anonymous, recurring, or enrolled visitors;
 - unknown entities.
 
 It should support multiple competing hypotheses, including unknown, until confidence is sufficient for downstream use.
