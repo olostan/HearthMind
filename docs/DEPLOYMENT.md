@@ -59,6 +59,8 @@ Original media growth will likely dominate storage.
 
 Configure retention before assuming unlimited history.
 
+Where practical, separate storage domains should also support separate permissions, mounts, and backup policies so a compromise of one component does not automatically expose every class of data.
+
 ## 6. Hardware acceleration
 
 Use opportunistically:
@@ -84,6 +86,13 @@ Potential future nodes:
 
 Scale by routing independent jobs/layers to appropriate workers, not by splitting one model across weak Ethernet-connected machines.
 
+Future attached workers should:
+- be optional accelerators, not authorities;
+- register capabilities and trust tier explicitly;
+- use encrypted transport and revocable credentials;
+- receive only the minimum evidence/context required for the claimed job;
+- be removable without losing durable state or job history.
+
 ## 9. Networking
 
 Default:
@@ -99,6 +108,14 @@ At minimum:
 - identity enrollment metadata backup if desired.
 
 Evidence backup policy is user-defined due to size.
+
+Backup guidance should distinguish:
+- configuration/secrets recovery;
+- database/provenance recovery;
+- evidence recovery;
+- biometric/enrollment recovery.
+
+Not every class of data should necessarily share one backup target or one retention policy.
 
 ## 11. Upgrade strategy
 

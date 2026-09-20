@@ -203,6 +203,8 @@ The gateway may:
 - downsample/crop;
 - require local-only processing.
 
+This same gateway concept should govern future off-box workers, not only cloud APIs. A same-LAN GPU box or temporary Mac/MLX worker is still a trust-boundary crossing if it is not the authoritative core host.
+
 ## 9. Search architecture
 
 v0.1 should prefer PostgreSQL:
@@ -228,6 +230,13 @@ Future worker registration:
 Jobs declare requirements rather than a hostname.
 
 The authoritative DB/world model remains centralized until a later explicit decision.
+
+Future multi-node operation should follow these rules:
+- the home core owns authoritative state and scheduling decisions;
+- workers register capabilities and trust tier;
+- workers receive task-scoped inputs and return versioned outputs;
+- no worker requires unrestricted direct access to all evidence by default;
+- training/evaluation workers may be more restricted than perception workers when policy demands.
 
 ## 11. Failure strategy
 

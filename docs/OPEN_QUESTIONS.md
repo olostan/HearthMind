@@ -47,8 +47,20 @@ Needs explicit privacy semantics and evaluation for false positive risk.
 ### Q7 — Authentication for single-household v0.1
 Determine minimal secure local authentication before remote/mobile access.
 
+This should be resolved before any deployment that is reachable beyond localhost or a tightly controlled private admin workflow.
+
 ### Q8 — Automatic Ring ingestion
 v0.1 deliberately permits manual imports. Automatic Ring integration should be designed only after confirming a robust, maintainable, policy-compliant integration path.
+
+### Q8a — v0.1 privacy baseline
+Before implementation hardens into defaults, define the minimum acceptable baseline for:
+- local authentication;
+- backup encryption;
+- secret storage;
+- biometric retention default;
+- debug/export redaction.
+
+These should not remain implicit implementation details.
 
 ## Episode intelligence / M2–M3
 
@@ -93,13 +105,37 @@ Training orchestration should remain backend-neutral.
 ### Q17 — Stable-prior admission criteria
 Define when an observed pattern is stable enough to become training data rather than remaining structured memory.
 
+## Distributed compute / M9+
+
+### Q18 — Worker trust tiers
+Define the permission differences between:
+- same-box workers;
+- same-LAN household-owned workers;
+- overlay-network remote workers;
+- cloud providers.
+
+### Q19 — Off-box evidence minimization
+Determine the smallest practical input packages for:
+- perception jobs;
+- VLM/episode jobs;
+- evaluation/training jobs.
+
+Off-box workers should not require unrestricted database or evidence-store access by default.
+
+### Q20 — Worker registration and revocation
+Define:
+- how a temporary MacBook/GPU node enrolls;
+- how credentials rotate;
+- how a worker is offboarded after loss/sale/compromise;
+- whether worker attestation is required for specific trust tiers.
+
 ## Open source
 
-### Q18 — Source license
+### Q21 — Source license
 Must be chosen before a broad public contributor/release push.
 
-### Q19 — Model redistribution policy
+### Q22 — Model redistribution policy
 Need a documented approach because model licenses differ from project source licensing.
 
-### Q20 — Plugin trust model
+### Q23 — Plugin trust model
 Define permissions/data declarations before a third-party plugin ecosystem is enabled.
