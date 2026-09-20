@@ -6,7 +6,9 @@ Build the smallest coherent system that proves HearthMind's central data archite
 
 > immutable evidence → versioned observations → evidence-backed timeline
 
-v0.1 does **not** need the full Household World Model, pattern engine, LoRA, or distributed workers.
+v0.1 is the implementation substrate for M0–M1, not the full product vision.
+
+v0.1 does **not** need the full Household World Model, pattern engine, LoRA, distributed workers, multi-camera fusion, or natural-language Ask/search.
 
 ## 2. User-visible outcome
 
@@ -20,6 +22,8 @@ A user can:
 7. retry/reprocess failed or selected processing.
 
 Stretch: known-family face matching.
+
+v0.1 is intentionally **single-camera at the semantic layer** even if the system stores multiple camera definitions. Multi-camera continuity and merged episodes belong to later milestones after single-camera provenance, retries, and baseline perception are reliable.
 
 ## 3. Required components
 
@@ -244,6 +248,12 @@ v0.1 is complete when:
 - failed jobs are visible/retryable;
 - no cloud provider is required;
 - the stack launches via documented Docker Compose.
+
+Additionally, v0.1 should enforce the privacy/security baseline needed for later milestones:
+- cloud dispatch is disabled by default;
+- logs/metrics avoid raw household semantic content where practical;
+- biometric retention is opt-in rather than implicit;
+- the deployment model does not require public Internet exposure.
 
 ## 15. Deferred
 

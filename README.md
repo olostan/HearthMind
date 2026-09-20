@@ -12,9 +12,9 @@ HearthMind is currently in the **architecture and foundation** phase. The reposi
 
 The first practical deployment target is a modest always-on Linux mini-PC (6C/12T x86 CPU, 16–32 GB RAM, integrated GPU, NVMe storage). Real-time processing is explicitly *not* a requirement. HearthMind prefers correctness, temporal richness, evidence, privacy, and recoverability over low latency.
 
-## Initial product goal
+## Long-term product goal
 
-The first serious HearthMind release should:
+The long-term HearthMind product should:
 
 > Convert multi-camera motion recordings into an evidence-backed, searchable chronological family timeline containing identified people, objects, actions, and cross-camera episodes.
 
@@ -26,6 +26,32 @@ A successful early demo should be able to turn fragmented camera clips such as:
 - kitchen: bags are placed on the counter and groceries are unpacked;
 
 into one coherent episode, while preserving every source clip and timestamp needed to verify the conclusion.
+
+## v0.1 implementation boundary
+
+The first implementation target is intentionally narrower than the long-term vision.
+
+v0.1 proves the architectural core:
+
+> immutable evidence → versioned observations → evidence-backed single-camera timeline
+
+Concretely, v0.1 should:
+
+- ingest manually imported motion-triggered clips;
+- preserve them as immutable evidence with normalized metadata;
+- run asynchronous baseline perception;
+- persist tracks and observations with full provenance;
+- expose a timeline that links every observation back to the source clip;
+- support retry/reprocessing without duplicate logical output.
+
+v0.1 explicitly does **not** require:
+
+- cross-camera episode fusion;
+- VLM-based action understanding;
+- natural-language Ask/search;
+- household world-model beliefs;
+- distributed workers or multi-node execution;
+- automatic cloud dependency.
 
 ## Core model
 
@@ -118,6 +144,19 @@ The current design preference is:
 - **TypeScript** for the family-facing web application.
 
 These choices are defaults, not dogma. Changes to core semantics or infrastructure require an ADR.
+
+## Milestone direction
+
+The intended evolution is:
+
+1. **M0 — Foundation**: schema, durable jobs, evidence store, provenance, health/metrics.
+2. **M1 — Single-camera perception**: ingest, detection, tracking, evidence-backed timeline.
+3. **M2 — Temporal episode understanding**: structured actions and episode revisions.
+4. **M3 — Multi-camera fusion**: topology-aware continuity and merged episodes.
+5. **M4+ — World model, family application, long-term cognition, personalization**.
+6. **M9+ — Multi-node workers**: capability-aware external workers, including optional GPU or Apple Silicon boxes, without distributing authoritative state.
+
+Later milestones must extend the same invariants rather than bypass them.
 
 ## What HearthMind is not
 

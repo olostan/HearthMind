@@ -61,11 +61,31 @@ The database/world model remains authoritative.
 
 ## 4. Initial product boundary
 
-v0.1 focuses on one end-to-end capability:
+The long-term product target remains:
 
 > Convert multi-camera event recordings into an evidence-backed, searchable chronological family timeline with people, objects, actions, and cross-camera episodes.
 
-Food inventory, proactive recommendations, LoRA training, phone-edge inference, and broad sensor integrations are architectural extensions, not v0.1 blockers.
+However, v0.1 is intentionally narrower. It focuses on one end-to-end capability:
+
+> Convert a manually imported motion-triggered clip into immutable evidence, versioned observations, and an evidence-backed single-camera timeline.
+
+v0.1 proves the semantic and operational substrate required for later milestones:
+- immutable evidence retention;
+- transactional ingest;
+- durable asynchronous processing;
+- versioned processor/model provenance;
+- tracks and observations linked to source evidence;
+- retry/reprocessing without duplicate logical outputs.
+
+The following remain architectural extensions beyond v0.1:
+- cross-camera episode fusion;
+- VLM-based action interpretation;
+- household world-model beliefs;
+- Ask/search experiences;
+- food inventory and recommendations;
+- LoRA training and personalization;
+- broad sensor integrations;
+- distributed/multi-node compute.
 
 ## 5. Five-layer intelligence model
 
@@ -245,6 +265,13 @@ Future:
 ```
 
 Scale jobs, not one model tensor across weak machines.
+
+Future external workers are accelerators, not authorities:
+- the home core remains the source of truth;
+- remote workers claim capability-matched jobs and return versioned outputs;
+- raw household context sent off-box is minimized by policy;
+- privacy policy can forbid specific jobs from leaving the core entirely;
+- a borrowed MacBook or GPU box may be enabled for evaluation/training only without receiving unrestricted household history.
 
 ## 13. External frontier models
 
