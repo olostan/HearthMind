@@ -9,10 +9,16 @@ Runtime prompts that produce persisted semantics must eventually be versioned wi
 - evaluation corpus/results;
 - compatible model assumptions.
 
-Current files focus on development workflows.
+## Development workflows
 
-See:
-- `implementation-agent.md`
-- `processor-task.md`
-- `architecture-review.md`
-- `milestone-decomposition.md`
+- [Principal implementation agent](implementation-agent.md)
+- [Repository task](repository-task.md)
+- [Processor implementation](processor-task.md)
+- [Architecture review](architecture-review.md)
+- [Milestone decomposition](milestone-decomposition.md)
+
+## Runtime prompt design
+
+- [Inference prompt design](inference-prompt-design.md)
+
+These are templates. Persisted runtime prompts should eventually live under a machine-readable/versioned prompt registry rather than being edited ad hoc.
