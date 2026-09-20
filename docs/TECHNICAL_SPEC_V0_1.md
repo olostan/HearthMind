@@ -24,6 +24,7 @@ A user can:
 Stretch: known-family face matching.
 
 v0.1 is intentionally **single-camera at the semantic layer** even if the system stores multiple camera definitions. Multi-camera continuity and merged episodes belong to later milestones after single-camera provenance, retries, and baseline perception are reliable.
+Multiple cameras may be configured and ingested independently in v0.1, but outputs remain per asset/per camera unless a later milestone adds explicit fusion semantics.
 
 ## 3. Required components
 
@@ -187,6 +188,12 @@ Suggested:
 
 Exact naming can change without ADR; semantic contracts cannot.
 
+Until stronger household auth is implemented, the administrative/API surface should be either:
+- localhost-only; or
+- authenticated before any access beyond localhost/private admin channels.
+
+Unauthenticated remote access to household evidence/timeline data is out of scope for an acceptable v0.1 deployment.
+
 ## 11. Configuration
 
 Config should include:
@@ -246,6 +253,7 @@ v0.1 is complete when:
 - every observation maps to source timestamp;
 - retry does not duplicate logical output;
 - failed jobs are visible/retryable;
+- multiple cameras can be configured/ingested independently even though fusion is deferred;
 - no cloud provider is required;
 - the stack launches via documented Docker Compose.
 
@@ -253,6 +261,8 @@ Additionally, v0.1 should enforce the privacy/security baseline needed for later
 - cloud dispatch is disabled by default;
 - logs/metrics avoid raw household semantic content where practical;
 - biometric retention is opt-in rather than implicit;
+- the API/admin surface is not remotely reachable without authentication;
+- manual/operator-managed evidence retention expectations are documented until full deletion semantics exist;
 - the deployment model does not require public Internet exposure.
 
 ## 15. Deferred

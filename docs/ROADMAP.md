@@ -23,6 +23,7 @@ Deliver:
 - PostgreSQL schema;
 - migrations;
 - evidence storage;
+- operator-visible storage/retention controls or documented manual retention procedure;
 - durable jobs;
 - processor/model-run provenance;
 - Docker Compose;
@@ -45,6 +46,7 @@ Produce a trustworthy evidence-backed single-camera timeline before attempting h
 
 Deliver:
 - manual/Ring-compatible ingestion abstraction;
+- multiple independently processed camera definitions, with no cross-camera fusion yet;
 - frame extraction;
 - person/object detection;
 - tracking;
@@ -58,7 +60,7 @@ Must specify:
 - operator workflow for retry/reprocess and failed-job inspection.
 
 Exit:
-One camera clip produces a timestamped evidence-backed timeline.
+A clip from any configured camera produces a timestamped evidence-backed timeline, while cross-camera fusion remains deferred.
 
 ## M2 — Temporal episode understanding
 
@@ -70,12 +72,14 @@ Deliver:
 - adaptive resampling;
 - keyframe selection;
 - VLM integration;
+- privacy/policy gateway enforcement for any off-box semantic dispatch, or explicit local-only enforcement until that gateway exists;
 - structured actions;
 - evidence-linked episode revisions.
 
 Must specify:
 - action/episode schemas and versioning;
 - model-prompt promotion criteria;
+- trust-boundary rules for local vs off-box inference;
 - unsupported-assertion limits and verifier strategy;
 - when deterministic logic should be preferred over VLM reasoning.
 
@@ -118,6 +122,7 @@ Must specify:
 - typed beliefs vs generic propositions;
 - projection/versioning semantics;
 - staleness/expiry behavior;
+- evidence/derived/biometric deletion semantics and recomputation behavior;
 - contradiction handling and correction propagation.
 
 Exit:
@@ -203,7 +208,8 @@ Must specify:
 - admission criteria for stable training examples;
 - privacy review for training/export workflows;
 - rollback/promotion criteria for adapters;
-- per-household isolation boundaries.
+- per-household isolation boundaries;
+- an initial on-core training path that works before distributed worker infrastructure is required.
 
 Exit:
 Personalization measurably improves quality or reduces context/retrieval load.
