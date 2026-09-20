@@ -84,6 +84,28 @@ High-quality examples may come from:
 - repeated stable observations;
 - explicitly approved annotations.
 
+Correction-derived examples should preserve correction type and context:
+- new label correction: candidate enrollment examples for person/pet/visitor identity creation;
+- wrong label correction: hard negative for mistaken identity pair + positive for corrected target;
+- category correction: negative detection/classification example (including not-a-person/not-a-pet artifacts);
+- visitor promotion correction: transition example from anonymous/recurring visitor state to enrolled identity.
+
+Each candidate example should include:
+- supporting evidence references;
+- superseded prediction reference;
+- processor/model/prompt version;
+- ambiguity flags and confidence before/after correction.
+
+Quality filtering should:
+- deduplicate near-identical corrections from the same incident;
+- down-rank singletons with high ambiguity or contradictory follow-up corrections;
+- require repeated support before promoting stable priors into L4 adaptation.
+
+Do not train on:
+- unverified model outputs as ground truth;
+- one-off ambiguous corrections without corroboration;
+- policy-restricted biometric/identity-private data not approved for training scope.
+
 Avoid training on unverified model outputs as if they were ground truth.
 
 ## 6. Training trigger
@@ -94,6 +116,15 @@ Nightly consolidation may:
 - score quality;
 - identify drift;
 - build candidate datasets.
+
+Scoring should account for:
+- correction type;
+- source ambiguity level;
+- user agreement history;
+- temporal recency;
+- downstream contradiction rate.
+
+Training triggers should require minimum quality-weighted sample thresholds per task (for example pet re-identification, visitor recognition, category disambiguation), not just raw correction count.
 
 Actual LoRA training should occur only when enough new high-quality evidence exists.
 

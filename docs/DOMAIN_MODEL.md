@@ -18,6 +18,23 @@ Administrative root for one household.
 ### FamilyMember
 A known person enrolled by the household. Identity enrollment and face embeddings are separate sensitive records.
 
+### PetProfile
+A known household pet enrolled by the household.
+
+Enrollment should include:
+- display name;
+- species/breed when known;
+- optional distinguishing descriptors (coat pattern, markings, collar color/tag text);
+- reference appearance samples/embeddings (whole-body or appearance-focused, not face-only by default);
+- provenance for who enrolled/updated the profile and when.
+
+Pet enrollment data is household-private and versioned like other identity-related semantics.
+
+### VisitorProfile
+Optional profile for a non-household person seen repeatedly.
+
+Visitor profiles begin anonymous by default, may remain ephemeral, and may later be promoted to named enrollment only through explicit user action.
+
 ### Camera
 Physical/logical camera source.
 
@@ -63,6 +80,7 @@ Examples:
 A temporally continuous detected entity within source evidence.
 
 A Track does not imply known identity.
+Track category may later be corrected (for example person → non-person artifact, pet → object).
 
 ### Observation
 Direct model/detector output tied to EvidenceSegment.
@@ -81,9 +99,18 @@ Common fields:
 ### IdentityHypothesis
 Association between a Track and a known/anonymous Entity with confidence and contributing evidence.
 
+IdentityHypothesis applies to:
+- family members;
+- enrolled pets;
+- anonymous or recurring visitors;
+- unknown entities.
+
+It should support multiple competing hypotheses, including unknown, until confidence is sufficient for downstream use.
+
 ### Entity
 Persistent conceptual entity:
 - Person;
+- Visitor;
 - Object;
 - FoodItem/Class;
 - Vehicle;
@@ -171,6 +198,14 @@ User-authored semantic correction.
 
 Never mutates evidence. Produces corrected/revised semantic state.
 
+Correction types should include:
+- new label (create/link identity when no prior confident match exists);
+- wrongly applied label (reassign to another identity or unknown);
+- category correction (underlying person/pet/object classification was wrong);
+- visitor lifecycle correction (anonymous visitor ↔ recurring visitor ↔ enrolled identity).
+
+A correction creates a new authoritative semantic revision/event with provenance, confidence policy context, and references to superseded derived artifacts.
+
 ### ProcessorDefinition
 Versioned semantic processor contract.
 
@@ -228,9 +263,15 @@ Store:
 
 ## 6. Anonymous identities
 
-Unknown people may receive ephemeral or persistent anonymous entity ids depending on household privacy policy.
+Unknown people and unknown pets may receive ephemeral or persistent anonymous entity ids depending on household privacy policy.
+
+Unknown visitors should default to anonymous/short-lived identity retention unless explicit policy allows recurring-visitor persistence.
+
+Recurring visitors may keep a stable anonymous id without requiring named enrollment.
 
 Do not automatically retain biometric identity for every visitor.
+
+Do not force pet identity when re-identification confidence is weak; unknown pet is a valid output.
 
 ## 7. Belief projection
 
@@ -260,3 +301,30 @@ Future deletion must account for lineage:
 - recompute beliefs/patterns?
 
 This requires explicit semantics before implementation.
+
+## 9. Identity and correction lifecycle (people, pets, visitors)
+
+Recommended progression:
+```text
+Track
+  ↓
+IdentityHypothesis(entity|unknown, confidence, evidence)
+  ↓
+Entity-linked Observation/Episode/Belief revisions
+  ↓
+Correction (if user disagrees)
+  ↓
+New semantic revisions + optional replay/reprojection
+```
+
+Pet re-identification should be based on appearance/body embeddings and context signals (size/shape, collar/tag, gait, co-occurrence), not face embeddings alone.
+
+When multiple similar pets exist, disambiguation should combine:
+- track continuity;
+- camera/location/time continuity;
+- distinguishing feature matches;
+- negative evidence against alternatives.
+
+When confidence remains ambiguous, keep competing hypotheses or assign unknown instead of forced attribution.
+
+Corrections should propagate by creating new revisions for affected episodes/beliefs/pattern inputs, while preserving historical lineage and replayability.

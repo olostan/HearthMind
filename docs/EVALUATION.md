@@ -31,6 +31,8 @@ Depending on processor:
 - track fragmentation;
 - missed short interactions;
 - face-match false accept/false reject;
+- pet re-identification false accept/false reject;
+- unknown-assignment rate under low confidence;
 - OCR accuracy;
 - resource/latency.
 
@@ -52,6 +54,7 @@ Measure:
 - stale-belief duration;
 - correction propagation;
 - contradictory belief incidence;
+- visitor classification accuracy (household member vs anonymous visitor vs recurring visitor);
 - replay determinism where expected.
 
 ## 6. Pattern metrics
@@ -81,6 +84,8 @@ For future LoRA/RAG adaptation:
 - tokens/context required;
 - retrieval count;
 - correction rate;
+- correction-type acceptance rate (new label, wrong label, category, visitor lifecycle);
+- post-training identity regression rate by entity class (person/pet/visitor);
 - latency;
 - memory footprint.
 
