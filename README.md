@@ -83,7 +83,9 @@ These are logical boundaries, not a requirement to deploy five services.
 
 ## Repository guide
 
-Start here:
+The full navigation page is [docs/INDEX.md](docs/INDEX.md).
+
+Core documents:
 
 - [Product and system design](docs/DESIGN.md)
 - [Functional and non-functional requirements](docs/REQUIREMENTS.md)
@@ -92,10 +94,14 @@ Start here:
 - [Domain model](docs/DOMAIN_MODEL.md)
 - [Processing pipeline](docs/PIPELINE.md)
 - [v0.1 technical specification](docs/TECHNICAL_SPEC_V0_1.md)
+- [Model strategy](docs/MODEL_STRATEGY.md)
+- [Personalization and memory](docs/PERSONALIZATION.md)
 - [Privacy and security](docs/PRIVACY_SECURITY.md)
 - [Evaluation strategy](docs/EVALUATION.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Deployment and hardware assumptions](docs/DEPLOYMENT.md)
+- [Open questions](docs/OPEN_QUESTIONS.md)
+- [Glossary](docs/GLOSSARY.md)
 - [Architecture Decision Records](docs/adr/README.md)
 - [Instructions for coding agents](AGENTS.md)
 - [Reusable agent prompts](prompts/README.md)
