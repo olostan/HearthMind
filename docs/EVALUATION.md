@@ -54,7 +54,7 @@ Measure:
 - stale-belief duration;
 - correction propagation;
 - contradictory belief incidence;
-- visitor classification accuracy (household member vs anonymous visitor vs recurring visitor);
+- visitor classification accuracy (household member vs anonymous visitor vs recurring visitor vs enrolled visitor);
 - replay determinism where expected.
 
 ## 6. Pattern metrics

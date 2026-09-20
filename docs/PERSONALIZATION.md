@@ -86,14 +86,15 @@ High-quality examples may come from:
 
 Correction-derived examples should preserve correction type and context:
 - new label correction: candidate enrollment examples for person/pet/visitor identity creation;
-- wrong label correction: hard negative for mistaken identity pair + positive for corrected target;
-- category correction: negative detection/classification example (including not-a-person/not-a-pet artifacts);
-- visitor promotion correction: transition example from anonymous/recurring visitor state to enrolled identity.
+- wrong label correction: hard negative for mistaken identity pair + positive for corrected target when the correction resolves to another identity, or open-set/rejection signal when the correction resolves to unknown;
+- category correction: negative detection/classification example for the superseded class + positive example for the corrected class when one is supplied (including not-a-person/not-a-pet artifacts);
+- visitor lifecycle correction: transition example for promotion or demotion between anonymous visitor, recurring visitor, and enrolled identity states, with the corrected target state recorded explicitly.
 
 Each candidate example should include:
 - supporting evidence references;
 - superseded prediction reference;
 - processor/model/prompt version;
+- configuration version or hash;
 - ambiguity flags and confidence before/after correction.
 
 Quality filtering should:

@@ -41,8 +41,8 @@ Suggested classification:
 - INTERNAL: operational metrics;
 - HOUSEHOLD: timelines, generic events;
 - SENSITIVE: raw media, presence, routines;
-- BIOMETRIC: human face embeddings/identity enrollment;
-- IDENTITY_PRIVATE: pet appearance profiles/embeddings, recurring visitor appearance profiles;
+- BIOMETRIC: human face embeddings/identity enrollment, including any retained recurring-visitor human biometric components;
+- IDENTITY_PRIVATE: pet appearance profiles/embeddings, recurring visitor appearance profiles excluding human biometric components;
 - SECRET: tokens/passwords/keys.
 
 Policies can depend on class.
