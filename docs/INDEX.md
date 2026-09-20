@@ -10,6 +10,12 @@
 6. [Domain Model](DOMAIN_MODEL.md)
 7. [v0.1 Technical Specification](TECHNICAL_SPEC_V0_1.md)
 
+## Semantics and contracts
+
+- [Glossary](GLOSSARY.md)
+- [Schema and Contract Guidelines](SCHEMA_CONTRACTS.md)
+- [Open Questions / Pending Decisions](OPEN_QUESTIONS.md)
+
 ## Intelligence and ML
 
 - [Processing Pipeline](PIPELINE.md)
